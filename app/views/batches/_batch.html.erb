@@ -1,0 +1,23 @@
+<tr>
+  <td><%= batch.name %></td>
+  <td><%= batch.description %></td>
+  <td><%= batch.capacity %></td>
+  <td><%= batch.start_date %></td>
+  <td><%= batch.end_date %></td>
+  <td><%= link_to 'Show', batch_path(batch) %></td>
+  <% if can?(:edit, Batch)%>
+    <td><%= link_to 'Edit', edit_batch_path(batch) %></td>
+  <% end %>
+  <% if can?(:destroy, Batch)%>
+    <td><%= link_to 'Destroy', batch_path(batch, course_id: @course.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% end %>
+  <% if current_user.student? %>
+    <td>
+      <% if current_user.enrollments.pluck(:batch_id).include?(batch.id)%>
+        <%= current_user.enrollments.find_by(batch_id: batch.id).status %>
+      <% else %>
+        <%= link_to 'Enroll', enroll_batch_batch_path(batch, course_id: @course.id), method: :put %>
+      <% end %>
+    </td>
+  <% end %>
+</tr>

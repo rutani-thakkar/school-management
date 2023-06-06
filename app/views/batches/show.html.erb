@@ -1,0 +1,16 @@
+<div class="container">
+  <h1 class="mt-4 mb-4">Batch Details</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= @batch.name %></h5>
+      <p class="card-text"><strong>Description:</strong><%= @batch.description %></p>
+      <p class="card-text"><strong>Capacity:</strong> <%= @batch.capacity %></p>
+      <p class="card-text"><strong>start_date:</strong> <%= @batch.start_date %></p>
+      <p class="card-text"><strong>end_date:</strong> <%= @batch.end_date %></p>
+      <% if can?(:edit, Batch)%>
+        <%= link_to 'Edit', edit_batch_path(@batch), class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

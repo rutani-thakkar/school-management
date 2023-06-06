@@ -1,0 +1,24 @@
+<div class="container">
+  <h1 class="mt-4 mb-4">School Details</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= @school.name %></h5>
+      <p class="card-text"><strong>Address:</strong><%= @school.address %></p>
+      <p class="card-text"><strong>Email:</strong> <%= @school.email %></p>
+      <p class="card-text"><strong>Phone:</strong> <%= @school.phone %></p>
+      <p class="card-text"><strong>Website:</strong> <%= @school.website %></p>
+      <p class="card-text"><strong>Description:</strong> <%= @school.description %></p>
+
+      <% if can?(:edit, @school)%>
+        <%= link_to 'Edit', edit_school_path(@school), class: 'btn btn-primary' %>
+      <% end %>
+      <%= link_to 'Back', schools_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>
+
+<%= render 'courses/courses', locals: {courses: @courses} %>
+<% if can?(:new, Course)%>
+  <%= link_to 'Add Course', new_school_course_path(@school), class: "btn btn-primary" %>
+<% end %>
