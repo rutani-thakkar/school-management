@@ -1,0 +1,41 @@
+<%= form_with(model: @user, class: 'bootstrap-form', url: action) do |form| %>
+
+<div class="form-group">
+    <%= form.label :first_name %><br />
+    <%= form.text_field :first_name, autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :last_name %><br />
+    <%= form.text_field :last_name, autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email %><br />
+    <%= form.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :phone %><br />
+    <%= form.phone_field :phone, autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= form.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+  </div>
+
+  <% if @school_admin %>
+    <div class="form-group">
+      <%= form.label :school_id %><br />
+      <%= form.select :school_id, School.all.pluck(:name, :id), include_blank: true, class: 'form-control'%>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit text, class: "btn btn-primary" %>
+  </div>
+<% end %>

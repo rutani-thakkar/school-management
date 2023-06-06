@@ -1,0 +1,18 @@
+<div class="container">
+  <h1 class="mt-4 mb-4">Course Details</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= @course.name %></h5>
+      <p class="card-text"><strong>Description:</strong><%= @course.description %></p>
+      <p class="card-text"><strong>Duration:</strong> <%= @course.duration %></p>
+      <p class="card-text"><strong>start_date:</strong> <%= @course.start_date %></p>
+      <p class="card-text"><strong>end_date:</strong> <%= @course.end_date %></p>
+      <% if can?(:edit, @course)%>
+        <%= link_to 'Edit', edit_course_path(@course), class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Batches', course_batches_path(@course), class: "btn btn-success" %>

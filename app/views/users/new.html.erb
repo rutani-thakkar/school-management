@@ -1,0 +1,1 @@
+<%= render "form", user: @user, action: @school_admin ? create_school_admin_users_path(@user) : create_student_users_path(@user), text: 'Create'  %>

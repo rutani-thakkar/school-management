@@ -1,0 +1,30 @@
+<h1>School Admins</h1>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @school_admins.each do |school_admin| %>
+      <tr>
+        <td><%= school_admin.first_name %></td>
+        <td><%= school_admin.last_name %></td>
+        <td><%= school_admin.email %></td>
+        <td><%= school_admin.phone %></td>
+        <td><%= link_to 'Show', school_admin %></td>
+        <td><%#= link_to 'Edit', edit_school_path(school) %></td>
+        <td><%#= link_to 'Destroy', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if can?(:create_school_admin, User)%>
+  <%= link_to 'Add School Admin', new_user_path(school_admin: true) %>
+<% end %>

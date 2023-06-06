@@ -1,0 +1,42 @@
+<%= form_with(model: @course, url: action, class: 'bootstrap-form') do |form| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+      <ul>
+      <% @course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_field :description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :duration %>
+    <%= form.text_field :duration, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :start_date %>
+    <%= form.date_field :start_date, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :end_date %>
+    <%= form.date_field :end_date, class: 'form-control' %>
+  </div>
+  <%= form.hidden_field :school_id, value: @school&.id || @course.school.id%>
+
+  <div class="actions">
+    <%= form.submit text, class: "btn btn-primary"%>
+  </div>
+<% end %>
